@@ -1,0 +1,211 @@
+;****************************************************************************************
+;
+; M76USB.INF
+;
+;   This installation script supports for the
+;   MediaTek MT7650 series Card.
+;
+;   Copyright (C) 2002-2012 MediaTek Technology Corporation. All Rights Reserved.
+;   Developed by MediaTek Technology, Corp. -- http://www.mediatek.com
+;
+;****************************************************************************************
+
+[Version]
+Signature       = "$WINDOWS NT$"
+Class           = Bluetooth Device
+ClassGUID       = {D2DE069D-7286-420b-BAF8-225D700CE748}
+;Class=Bluetooth
+;CLASSGUID={e0cbf06c-cd8b-4647-bb8a-263b43f0f974}
+Provider=%Mediatek%
+CatalogFile=m76usb.cat
+DriverVer=05/26/2015,1.0.61.0
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%Mediatek%        = Ralink,NTamd64
+
+
+[Ralink]
+;
+; These are the MT7650 VUSB ids
+;
+%Generic.DeviceDesc%        =m76usb_ASUS.Dev,        USB\VID_0489&PID_E069&MI_00
+%Generic.DeviceDesc%        =m76usb_ASUS.Dev,        USB\VID_0489&PID_E080&MI_00
+%Generic.DeviceDesc%        =m76usb_MTK.Dev,         USB\VID_04C5&PID_13E6&MI_00
+%Generic.DeviceDesc%        =m76usb_ASUS.Dev,         USB\VID_04CA&PID_4001&MI_00
+%Generic.DeviceDesc%        =m76usb.Dev,             USB\VID_0E8D&PID_7630&MI_00
+%Generic.DeviceDesc%        =m76usb_MTK.Dev,         USB\VID_0E8D&PID_7633&MI_00
+%Generic.DeviceDesc%        =m76usb_MTK.Dev,         USB\VID_0E8D&PID_763E&MI_00
+%Generic.DeviceDesc%        =m76usb.Dev,             USB\VID_0E8D&PID_7652&MI_00
+%Generic.DeviceDesc%        =m76usb.Dev,             USB\VID_0E8D&PID_765A&MI_00
+%Generic.DeviceDesc%        =m76usb_MTK.Dev,         USB\VID_13D3&PID_3419&MI_00
+
+[Ralink.NTamd64]
+;
+; These are the MT7650 VUSB ids
+;
+%Generic.DeviceDesc%        =m76usb_ASUS.Dev,        USB\VID_0489&PID_E069&MI_00
+%Generic.DeviceDesc%        =m76usb_ASUS.Dev,        USB\VID_0489&PID_E080&MI_00
+%Generic.DeviceDesc%        =m76usb_MTK.Dev,         USB\VID_04C5&PID_13E6&MI_00
+%Generic.DeviceDesc%        =m76usb_ASUS.Dev,         USB\VID_04CA&PID_4001&MI_00
+%Generic.DeviceDesc%        =m76usb.Dev,             USB\VID_0E8D&PID_7630&MI_00
+%Generic.DeviceDesc%        =m76usb_MTK.Dev,         USB\VID_0E8D&PID_7633&MI_00
+%Generic.DeviceDesc%        =m76usb_MTK.Dev,         USB\VID_0E8D&PID_763E&MI_00
+%Generic.DeviceDesc%        =m76usb.Dev,             USB\VID_0E8D&PID_7652&MI_00
+%Generic.DeviceDesc%        =m76usb.Dev,             USB\VID_0E8D&PID_765A&MI_00
+%Generic.DeviceDesc%        =m76usb_MTK.Dev,         USB\VID_13D3&PID_3419&MI_00
+
+;*******************************************************************************************
+; NT specific entries
+;*******************************************************************************************
+[m76usb.Dev.NT]
+AddReg                  = m76usb.reg
+CopyFiles               = NT.CopyFiles
+
+[m76usb_MTK.Dev.NT]
+AddReg                  = m76usb.reg
+CopyFiles               = NT.CopyFiles
+
+[m76usb_ASUS.Dev.NT]
+AddReg                  = m76usb.reg
+CopyFiles               = NT.CopyFiles
+
+;*******************************************************************************************
+; Registry for Windows
+;*******************************************************************************************
+[m76usb.reg]
+HKR,Ndi,Service,0,"m76usb"
+
+[suspend.reg]
+HKR,,"SelectiveSuspend",0x10001,1
+
+[Notsuspend.reg]
+HKR,,"SelectiveSuspend",0x10001,0
+
+[LoadExtFW.reg]
+HKR,,"LoadExtFW",0x10001,1
+
+[vidpid.reg]
+HKR,,"VidPid",0,"USB\VID_148F&PID_3000"
+
+[vidpid_MTK.reg]
+HKR,,"VidPid",0,"USB\VID_0E8D&PID_3001&REV_0100"
+
+[RadioEnable.reg]
+HKR,,"Radio Enabled",0x10001,1
+HKR,,"Win81_Win10_RadioSts",0x10001,0
+
+[Reload_FW.reg]
+HKR,,"ReloadFW",0x10001,1
+HKR,,"ReloadFW_Timeout",0x10001,0
+
+[RegSettings.reg]
+HKR,,"Settings_#0",0x10001,"0x0"
+HKR,,"Settings_#1",0x10001,"0x0"
+HKR,,"Settings_#2",0x10001,"0x0"
+HKR,,"Settings_#3",0x10001,"0x0"
+HKR,,"Settings_#4",0x10001,"0x0"
+HKR,,"Settings_#5",0x10001,"0x0"
+HKR,,"Settings_#6",0x10001,"0x0"
+HKR,,"Settings_#7",0x10001,"0x0"
+HKR,,"Settings_#8",0x10001,"0x0"
+HKR,,"Settings_#9",0x10001,"0x0"
+
+[RegSettings_C1.reg]
+HKR,,"Settings_#0",0x10001,"0x0003F5FF"
+HKR,,"Settings_#1",0x10001,"0x80000000"
+HKR,,"Settings_#3",0x10001,"0x0088B804"
+
+[RegSettings_C2.reg]
+HKR,,"Settings_#0",0x10001,"0x0003F5FF"
+HKR,,"Settings_#1",0x10001,"0x80000000"
+HKR,,"Settings_#3",0x10001,"0x0088B800"
+
+;*******************************************************************************************
+; NT services sections
+;*******************************************************************************************
+[m76usb.Dev.NT.Services]
+AddService              = m76usb, 2, m76usb.Service, common_eventlog_inst
+
+[m76usb_MTK.Dev.NT.Services]
+AddService              = m76usb, 2, m76usb_MTK.Service, common_eventlog_inst
+
+[m76usb_ASUS.Dev.NT.Services]
+AddService              = m76usb, 2, m76usb_ASUS.Service, common_eventlog_inst
+
+;*******************************************************************************************
+; DestinationDirs
+;*******************************************************************************************
+[DestinationDirs]
+NT.CopyFiles            = 12    ; system32\drivers subdirectory
+
+[NT.CopyFiles]
+m76usb.sys
+
+[SourceDisksNames]
+1                       = %INSTALL_DISK_STR%,,,
+
+[SourceDisksFiles]
+m76usb.sys  = 1
+
+[ClassInstall32]
+AddReg                  = HideUSB.reg
+
+[HideUSB.reg]
+HKR,,,0,%BtUSBDevClassName%
+HKR,,SilentInstall,,1
+HKR,,NoInstallClass,,1
+HKR,,NoDisplayClass,,1
+HKR,,IconPath,0x00010000,"%SYSTEMROOT%\system32\bthci.dll,-201"
+;*******************************************************************************************
+; NT specific
+;*******************************************************************************************
+[m76usb.Service]
+DisplayName    = %General.Service.DispName%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\m76usb.sys
+LoadOrderGroup = Base
+AddReg         = suspend.reg, vidpid.reg, RadioEnable.reg, RegSettings_C2.reg, Reload_FW.reg
+
+[m76usb_MTK.Service]
+DisplayName    = %General.Service.DispName%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\m76usb.sys
+LoadOrderGroup = Base
+AddReg         = suspend.reg, vidpid_MTK.reg, RadioEnable.reg, RegSettings_C2.reg, Reload_FW.reg
+
+[m76usb_ASUS.Service]
+DisplayName    = %General.Service.DispName%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\m76usb.sys
+LoadOrderGroup = Base
+AddReg         = suspend.reg, vidpid_MTK.reg, RadioEnable.reg, RegSettings_C1.reg, Reload_FW.reg
+
+[common_eventlog_inst]
+AddReg=common.AddEventLog.reg
+
+[common.AddEventLog.reg]
+HKR, , EventMessageFile, 0x00020000, "%%SystemRoot%%\System32\IoLogMsg.dll,%%SystemRoot%%\System32\drivers\m76usb.sys"
+HKR, , TypesSupported,   0x00010001, 7
+
+;*******************************************************************************************
+; Strings
+;*******************************************************************************************
+[Strings]
+Mediatek                      = "MediaTek Technology Corp."
+General.Service.DispName    = "M76USB Bluetooth Device Driver"
+INSTALL_DISK_STR            = "MediaTek Bluetooth Device Installation Disk"
+
+;*******************************************************************************************
+; Device description
+;*******************************************************************************************
+Generic.DeviceDesc          = "M76USB Bluetooth Device Driver"
+BtUSBDevClassName           = "Bluetooth Device"
